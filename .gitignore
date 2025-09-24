@@ -1,0 +1,43 @@
+# Archivos de configuración sensibles
+config/database.php
+config/config.php
+*.env
+
+# Archivos temporales de PHP
+*.tmp
+*.temp
+*.log
+error_log
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores de código
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Dependencias de PHP
+/vendor/
+composer.lock
+
+# Archivos de respaldo
+*.bak
+*.backup
+*.old
+
+# Archivos específicos de XAMPP
+php_errorlog
+.htaccess.bak
+
+# Archivos temporales de Windows
+*.tmp
+*.temp
+
+# Archivos de logs personalizados
+logs/
+*.log
