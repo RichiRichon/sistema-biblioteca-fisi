@@ -1,43 +1,25 @@
-# Archivos de configuración sensibles
+# Configuración local
 config/database.php
-config/config.php
-*.env
 
-# Archivos temporales de PHP
+# Archivos temporales
 *.tmp
 *.temp
 *.log
-error_log
 
-# Archivos del sistema operativo
+# Archivos del sistema
 .DS_Store
 Thumbs.db
-desktop.ini
 
-# Editores de código
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
 
-# Dependencias de PHP
+# Dependencias (si usas Composer más adelante)
 /vendor/
 composer.lock
 
-# Archivos de respaldo
-*.bak
-*.backup
-*.old
-
-# Archivos específicos de XAMPP
-php_errorlog
-.htaccess.bak
-
-# Archivos temporales de Windows
-*.tmp
-*.temp
-
-# Archivos de logs personalizados
-logs/
-*.log
+# Archivos sensibles
+*.env
+passwords.txt
