@@ -171,9 +171,8 @@ Desarrollar un sistema web integral que automatice préstamos y devoluciones, ge
 ## Configuración para Desarrollo Local
 
 ### 1. Clonar el repositorio
-```bash
-git clone https://github.com/TU-USUARIO/sistema-biblioteca-fisi.git
 
+git clone https://github.com/TU-USUARIO/sistema-biblioteca-fisi.git
 
 ### 2. Configurar base de datos
 
