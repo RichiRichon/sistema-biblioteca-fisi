@@ -83,7 +83,7 @@ Desarrollar un sistema web integral que automatice préstamos y devoluciones, ge
 
 
 
-\## 📈 Roadmap
+\## Roadmap
 
 \- \*\*25/09/2025:\*\* Arquitectura y BD implementadas
 
@@ -126,45 +126,70 @@ Desarrollar un sistema web integral que automatice préstamos y devoluciones, ge
 \- \[Scripts SQL](sql/)
 
 =======
-## 📋 Información del Proyecto
+## Información del Proyecto
 - **Institución:** Facultad de Ingeniería de Sistemas e Informática - UNMSM
 - **Curso:** Desarrollo de Sistemas Web  
 - **Equipo:** [Nombres de los miembros del equipo]
 - **Scrum Master:** Richard Carrasco
 
-## 🎯 Objetivo
+## Objetivo
 Desarrollar un sistema web integral que automatice préstamos y devoluciones, gestione inventario de recursos físicos, permita consultas online del catálogo y ofrezca estadísticas de uso para la biblioteca de FISI.
 
-## 📊 Estado Actual
-- ✅ **Base de datos:** 9 tablas implementadas con datos reales
-- ✅ **Arquitectura:** 3 capas definida y probada  
-- ✅ **Catálogo:** 6 libros únicos con 27 ejemplares físicos
-- ✅ **Integridad:** 100% verificada
+## Estado Actual
+- **Base de datos:** 9 tablas implementadas con datos reales
+- **Arquitectura:** 3 capas definida y probada  
+- **Catálogo:** 6 libros únicos con 27 ejemplares físicos
+- **Integridad:** 100% verificada
 
-## 🛠️ Tecnologías
+## Tecnologías
 - **Backend:** PHP 8+, MySQL 8+
 - **Frontend:** HTML5, CSS3, JavaScript, Bootstrap 5
 - **Servidor:** Apache (XAMPP)
 - **Base de Datos:** MySQL con PDO
 
-## 🚀 Instalación Local
+## Instalación Local
 1. Instalar XAMPP
 2. Clonar repositorio en `htdocs`
 3. Importar `sql/base_datos.sql` en phpMyAdmin
 4. Probar en: `http://localhost/biblioteca-fisi/prueba_conexion.php`
 
-## 📈 Roadmap
-- **25/09/2025:** ✅ Arquitectura y BD implementadas
-- **02/10/2025:** 🎯 HU-03 (Sistema de Autenticación)
+## Roadmap
+- **25/09/2025:** Arquitectura y BD implementadas
+- **02/10/2025:** HU-03 (Sistema de Autenticación)
 - **16/10/2025:** Segunda iteración
 - **Futuro:** Importación catálogo completo (3,373 registros)
 
-## 👥 Equipo de Desarrollo
+## Equipo de Desarrollo
 - Richard Carrasco - Scrum Master
 - [Añadir otros miembros]
 
-## 📄 Documentación
+## Documentación
 - [Arquitectura del Sistema](docs/arquitectura.md)
 - [Modelo Entidad-Relación](docs/modelo-er.png)
 - [Scripts SQL](sql/)
+
+## Configuración para Desarrollo Local
+
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/TU-USUARIO/sistema-biblioteca-fisi.git
+
+
+### 2. Configurar base de datos
+
+Copiar config/database.example.php como config/database.php
+Editar config/database.php con tus credenciales locales
+
+### 3. Importar base de datos
+
+Importar sql/base_datos.sql en phpMyAdmin
+Importar sql/datos_ejemplo.sql
+
+### 4. Usuarios de prueba
+
+Admin: admin / password
+Bibliotecario: bibliotecario / password
+Estudiante: estudiante / password
+Docente: docente / password
+
 >>>>>>> a30bd5d753e2b3000bc26a80f1b9358fdfef86ed
