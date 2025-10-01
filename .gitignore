@@ -23,3 +23,6 @@ composer.lock
 # Archivos sensibles
 *.env
 passwords.txt
+
+# Archivos de sesión PHP
+sessions/
