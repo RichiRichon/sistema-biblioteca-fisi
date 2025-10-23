@@ -108,7 +108,7 @@ try {
                     </h6>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="admin/gestion_libros.php">
                                 <i class="fas fa-book me-2"></i>
                                 Gestión de Libros
                             </a>

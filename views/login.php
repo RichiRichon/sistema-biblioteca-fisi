@@ -95,16 +95,6 @@ require_once '../controllers/login_controller.php';
                             </div>
                         </form>
 
-                        <!-- Información de usuarios de prueba -->
-                        <div class="mt-4 p-3 bg-light rounded">
-                            <p class="text-muted small mb-2 fw-bold">
-                                <i class="fas fa-info-circle me-1"></i> Usuarios de prueba:
-                            </p>
-                            <small class="text-muted">
-                                <strong>Administrador:</strong> admin / password<br>
-                                <strong>Bibliotecario:</strong> bibliotecario / password
-                            </small>
-                        </div>
 
                         <!-- Footer -->
                         <div class="text-center mt-4">
