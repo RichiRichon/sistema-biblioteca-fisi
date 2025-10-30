@@ -5,9 +5,38 @@
  */
 
 require_once '../includes/session.php';
+require_once '../config/database.php';
 protegerPagina('docente');
 
 $usuario = obtenerUsuarioActual();
+
+// Obtener estadísticas del catálogo
+try {
+    $db = Database::getInstance();
+    $pdo = $db->getConexion();
+    
+    // Contar libros únicos activos
+    $stmt = $pdo->query("SELECT COUNT(*) FROM libros WHERE estado = 'activo'");
+    $total_libros_activos = $stmt->fetchColumn();
+    
+    // Contar ejemplares disponibles
+    $stmt = $pdo->query("SELECT COUNT(*) FROM ejemplares_libros WHERE estado = 'disponible'");
+    $total_ejemplares_disponibles = $stmt->fetchColumn();
+    
+    // Contar préstamos activos del docente (preparado para HU-02)
+    $stmt = $pdo->prepare("
+        SELECT COUNT(*) 
+        FROM prestamos 
+        WHERE id_usuario = ? AND estado = 'activo'
+    ");
+    $stmt->execute([$usuario['id_usuario']]);
+    $prestamos_activos = $stmt->fetchColumn();
+    
+} catch (PDOException $e) {
+    $total_libros_activos = 0;
+    $total_ejemplares_disponibles = 0;
+    $prestamos_activos = 0;
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -75,7 +104,7 @@ $usuario = obtenerUsuarioActual();
                     <div class="stat-card docente">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <h3 class="mb-1">0</h3>
+                                <h3 class="mb-1"><?php echo $prestamos_activos; ?></h3>
                                 <p class="mb-0">Préstamos Activos</p>
                             </div>
                             <div class="stat-icon">
@@ -107,14 +136,14 @@ $usuario = obtenerUsuarioActual();
                     <div class="stat-card docente">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <h3 class="mb-1">27</h3>
-                                <p class="mb-0">Libros Disponibles</p>
+                                <h3 class="mb-1"><?php echo number_format($total_ejemplares_disponibles); ?></h3>
+                                <p class="mb-0">Ejemplares Disponibles</p>
                             </div>
                             <div class="stat-icon">
                                 <i class="fas fa-books"></i>
                             </div>
                         </div>
-                        <small class="text-light">En catálogo</small>
+                        <small class="text-light"><?php echo number_format($total_libros_activos); ?> títulos únicos</small>
                     </div>
                 </div>
 
@@ -148,7 +177,7 @@ $usuario = obtenerUsuarioActual();
                         </div>
                         <div class="card-body">
                             <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action">
+                                <a href="publico/catalogo_publico.php" class="list-group-item list-group-item-action">
                                     <i class="fas fa-search me-2 text-primary"></i>
                                     Buscar en el Catálogo
                                 </a>
@@ -220,17 +249,7 @@ $usuario = obtenerUsuarioActual();
                 </div>
             </div>
 
-            <!-- Nota de Funcionalidad Futura -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="alert alert-warning">
-                        <i class="fas fa-wrench me-2"></i>
-                        <strong>Nota:</strong> Las funcionalidades completas de gestión se implementarán en las siguientes iteraciones del proyecto.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

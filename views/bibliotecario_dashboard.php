@@ -23,8 +23,9 @@ try {
     $stmt = $pdo->query("SELECT COUNT(*) FROM ejemplares_libros WHERE estado = 'disponible'");
     $ejemplares_disponibles = $stmt->fetchColumn();
     
-    // Total de préstamos activos (cuando se implementen)
-    $prestamos_activos = 0;
+    // Total de préstamos activos
+    $stmt = $pdo->query("SELECT COUNT(*) FROM prestamos WHERE estado = 'activo'");
+    $prestamos_activos = $stmt->fetchColumn();
     
     // Total de usuarios estudiantes
     $stmt = $pdo->query("SELECT COUNT(*) FROM usuarios WHERE rol = 'estudiante'");
@@ -97,19 +98,19 @@ try {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="bibliotecario/registrar_prestamo.php">
                                 <i class="fas fa-book-open me-2"></i>
                                 Registrar Préstamo
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="bibliotecario/registrar_devolucion.php">
                                 <i class="fas fa-undo me-2"></i>
                                 Registrar Devolución
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="bibliotecario/renovar_prestamo.php">
                                 <i class="fas fa-redo me-2"></i>
                                 Renovar Préstamo
                             </a>
@@ -121,13 +122,13 @@ try {
                     </h6>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="bibliotecario/buscar_libro.php">
                                 <i class="fas fa-search me-2"></i>
                                 Buscar Libro
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="bibliotecario/buscar_usuario.php">
                                 <i class="fas fa-users me-2"></i>
                                 Buscar Usuario
                             </a>
@@ -139,7 +140,7 @@ try {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="bibliotecario/prestamos_vencidos.php">
                                 <i class="fas fa-exclamation-triangle me-2"></i>
                                 Préstamos Vencidos
                             </a>
@@ -157,7 +158,7 @@ try {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="bibliotecario/multas_pendientes.php">
                                 <i class="fas fa-dollar-sign me-2"></i>
                                 Multas Pendientes
                             </a>
@@ -262,25 +263,25 @@ try {
                                 <div class="card-body">
                                     <div class="row text-center">
                                         <div class="col-md-3 mb-3">
-                                            <a href="#" class="btn btn-outline-primary btn-lg w-100">
+                                            <a href="bibliotecario/registrar_prestamo.php" class="btn btn-outline-primary btn-lg w-100">
                                                 <i class="fas fa-plus-circle fa-2x mb-2"></i><br>
                                                 <span>Nuevo Préstamo</span>
                                             </a>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <a href="#" class="btn btn-outline-success btn-lg w-100">
+                                            <a href="bibliotecario/registrar_devolucion.php" class="btn btn-outline-success btn-lg w-100">
                                                 <i class="fas fa-check-circle fa-2x mb-2"></i><br>
                                                 <span>Registrar Devolución</span>
                                             </a>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <a href="#" class="btn btn-outline-warning btn-lg w-100">
+                                            <a href="bibliotecario/buscar_libro.php" class="btn btn-outline-warning btn-lg w-100">
                                                 <i class="fas fa-search fa-2x mb-2"></i><br>
                                                 <span>Buscar Libro</span>
                                             </a>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <a href="#" class="btn btn-outline-danger btn-lg w-100">
+                                            <a href="bibliotecario/prestamos_vencidos.php" class="btn btn-outline-danger btn-lg w-100">
                                                 <i class="fas fa-exclamation-triangle fa-2x mb-2"></i><br>
                                                 <span>Ver Vencidos</span>
                                             </a>
@@ -302,28 +303,22 @@ try {
                                     </h5>
                                 </div>
                                 <div class="card-body">
+                                    <?php if ($prestamos_activos == 0): ?>
                                     <div class="alert alert-info">
                                         <i class="fas fa-info-circle me-2"></i>
                                         <strong>Sistema Operativo:</strong> No hay préstamos registrados aún. Las funcionalidades de préstamos y devoluciones se implementarán en la HU-02.
                                     </div>
+                                    <?php else: ?>
+                                    <div class="alert alert-success">
+                                        <i class="fas fa-check-circle me-2"></i>
+                                        <strong>Sistema Activo:</strong> Hay <?php echo $prestamos_activos; ?> préstamo(s) activo(s) en el sistema.
+                                    </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Nota -->
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <div class="alert alert-warning">
-                                <i class="fas fa-wrench me-2"></i>
-                                <strong>En Desarrollo:</strong> Las funcionalidades completas de gestión de préstamos (HU-02) se implementarán en la próxima iteración.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
